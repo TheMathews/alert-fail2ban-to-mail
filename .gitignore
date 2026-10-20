@@ -1,0 +1,23 @@
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Credenciales reales y registros de notificaciones locales
+config/credenciales.json
+config/ips_notificadas.json
+
+# Logs y carpetas temporales
+logs/
+temp/
+
+# IDEs y Sistema Operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

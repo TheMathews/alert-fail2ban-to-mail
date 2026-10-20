@@ -1,0 +1,16 @@
+{
+    "rutas": {
+        "lista_blanca": "config/lista_blanca_ips.json",
+        "notificadas": "config/ips_notificadas.json",
+        "auth_log": "/var/log/auth.log*",
+        "fail2ban_log": "/var/log/fail2ban.log*"
+    },
+    "comandos": {
+        "baneadas": "zgrep 'Ban ' /var/log/fail2ban.log* | awk '{print $NF}' | sort -u",
+        "aceptadas": "zgrep 'Accepted' /var/log/auth.log*",
+        "fallidas": "zgrep 'Failed' /var/log/auth.log*"
+    },
+    "smtp": {
+        "destinatario": "admin@tuservidor.com"
+    }
+}

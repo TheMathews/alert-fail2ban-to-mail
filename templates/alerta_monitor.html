@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { background-color: #ffffff; padding: 20px; border-radius: 8px; border-top: 5px solid #d9534f; }
+        h2 { color: #d9534f; }
+        ul { background-color: #f9f9f9; padding: 15px 30px; border-radius: 5px; }
+        .action-box { background-color: #fff3cd; padding: 15px; border-left: 5px solid #ffecb5; margin-top: 15px; border-radius: 4px; }
+        .footer { margin-top: 20px; font-size: 12px; color: #777; }
+        code { background-color: #eee; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>⚠️ Alerta de Seguridad SSH</h2>
+        <p>El servidor <strong>{{ hostname }}</strong> ha detectado inicios de sesión exitosos desde direcciones IP que previamente fueron baneadas por Fail2Ban.</p>
+        
+        <p><strong>Accesos detectados:</strong></p>
+        <ul>
+            {{ ips_sospechosas }}
+        </ul>
+
+        <div class="action-box">
+            <p><strong>Acción requerida inmediata:</strong></p>
+            <p>Las credenciales del usuario indicado han sido comprometidas. Para forzar la expiración inmediata de la contraseña y obligar al usuario a cambiarla, ejecuta en la terminal:</p>
+            <p><code>sudo passwd -e [usuario_comprometido]</code></p>
+            <p>Para cerrar las sesiones activas del intruso, utiliza:</p>
+            <p><code>sudo pkill -u [usuario_comprometido] sshd</code></p>
+        </div>
+        
+        <p>Si reconoces estas IPs, añádelas al archivo de lista blanca en el servidor (<code>/etc/lista_blanca_ips.txt</code>) para silenciar futuras alertas.</p>
+        
+        <div class="footer">
+            Generado automáticamente por el monitor de seguridad.<br>
+            {{ timestamp }}
+        </div>
+    </div>
+</body>
+</html>
